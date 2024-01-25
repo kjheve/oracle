@@ -83,7 +83,7 @@ select t1.deptno, t2.dname, round(avg(sal), 2)
 
 -- 7. EMP 테이블과 DEPT 테이블을 등가조인해서 사원 수가 5명 이상인 부서의 부서 이름과 사원 수를 출력하시오.
 
-select t2.dname, COUNT(t2.dname)
+select t2.dname, COUNT(*)
   from emp t1 join dept t2
   on t1.deptno = t2.deptno
   group by t2.dname
@@ -93,7 +93,7 @@ select t2.dname, COUNT(t2.dname)
 -- 8. EMP 테이블과 DEPT 테이블을 외부조인해서 사원 수가 5명 이상인 부서의 부서 이름과 사원 수를 출력하시오.
 -- 부서가 없는 사원도 포함하시오. (부서가 없는 인원이 5명이 안넘어서 -> 보일려면 having을 주석처리 해야함)
 
-select t2.dname, COUNT(t2.dname)
+select t2.dname, COUNT(*)
   from emp t1 left outer join dept t2
   on t1.deptno = t2.deptno
   group by t2.dname;
@@ -111,35 +111,57 @@ select t1.ename, t2.sal+t2.comm AS "보너스"
 -- 보너스를 받지 못한 사원도 포함하시오.
 -- (보너스 테이블의 데이터가 없다면 맨 밑에 INSERT문을 실행 하시오)
 
-select t1.ename, t2.sal+t2.comm AS "보너스"
+select t1.ename, nvl(t2.sal+t2.comm, 0) AS "보너스"
   from emp t1 left outer join bonus t2
   on t1.ename = t2.ename;
 
 
 --11. EMP 테이블을 셀프 조인해서 같은 부서에서 일하는 사원들의 이름을 출력하시오.
- 
-select deptno,
-       LISTAGG(ename, ', ')
-  from emp
-group by deptno;
 
-select t1.deptno,
-       LISTAGG(t1.ename, ', ')
-  from emp t1, emp t2
-  where t1.ename = t2.ename
-  group by t1.deptno
-  order by t1.deptno;
+select t1.deptno, t1.ename, t2.ename
+  from emp t1 join emp t2
+  on t1.deptno = t2.deptno and t1.ename != t2.ename
+  order by t1.deptno; 
+  
+  select distinct t1.deptno, t1.ename, t3.dname
+    from emp t1 join emp t2 on t1.deptno = t2.deptno
+                join dept t3 on t1.deptno = t3.deptno
+  order by t1.deptno;  
+
+select distinct t3.dname, t1.ename
+    from emp t1, emp t2, dept t3
+    where t1.deptno = t2.deptno
+        AND t1.deptno = t3.deptno
+  order by t3.dname;  
+  
+--select t1.deptno,
+--       LISTAGG(t1.ename, ', ')
+--  from emp t1, emp t2
+--  where t1.ename = t2.ename
+--  group by t1.deptno
+--  order by t1.deptno;
 
 
 --12. EMP 테이블을 셀프 조인해서 자신보다 더 많은 급여를 받는 사원들의 이름을 출력하시오.
 
-select * from emp;
+select t1.deptno, t1.ename, t1.sal, t2.ename, t2.sal
+  from emp t1 join emp t2
+  on t1.deptno = t2.deptno and t1.ename != t2.ename
+  where t1.sal < t2.sal
+  order by deptno, t1.sal, t2.sal;
+  
+select t1.deptno, t1.ename, t1.sal, t2.ename, t2.sal
+  from emp t1 join emp t2
+  on t1.sal < t2.sal
+  order by deptno, t1.sal, t2.sal;
 
-select t1.deptno
+select t1.deptno, t1.ename, t1.sal,
+       LISTAGG(t2.ename, ', ')
+       within group(order by t2.sal) AS "<-- 보다 급여가 높음"
   from emp t1, emp t2
-  where t1.empno = t2.empno;
-
-
+  where t1.sal < t2.sal
+  group by t1.deptno, t1.ename, t1.sal
+  order by t1.sal;
 
 
 

@@ -1,4 +1,4 @@
--- P.119 ì§‘í•©ì—°ì‚°ìž
+-- P.119 ÁýÇÕ¿¬»êÀÚ
 SELECT EMPNO, ENAME, SAL, DEPTNO
   FROM EMP
   WHERE DEPTNO = 10
@@ -8,7 +8,7 @@ SELECT EMPNO, ENAME, SAL, DEPTNO
   WHERE DEPTNO = 20
   order by DEPTNO;
   
---  P.125 ë¬¸ì œ------------------------------------------------
+--  P.125 ¹®Á¦------------------------------------------------
 -- Q1)
 select *
   from EMP
@@ -20,12 +20,12 @@ SELECT EMPNO, ENAME, JOB, SAL, DEPTNO
   WHERE DEPTNO = 30
   AND JOB = 'SALESMAN';
   
--- Q3-1) ì§‘í•© ì—°ì‚°ìžë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì€ ë°©ì‹
+-- Q3-1) ÁýÇÕ ¿¬»êÀÚ¸¦ »ç¿ëÇÏÁö ¾ÊÀº ¹æ½Ä
 SELECT EMPNO, ENAME, JOB, SAL, DEPTNO
   FROM EMP
   WHERE (DEPTNO = 20 OR DEPTNO = 30) -- DEPTNO IN (20, 30)
   AND SAL > 2000;
--- Q3-2) ì§‘í•© ì—°ì‚°ìžë¥¼ ì‚¬ìš©í•œ ë°©ì‹ [í•©ì§‘í•©(UNION)]
+-- Q3-2) ÁýÇÕ ¿¬»êÀÚ¸¦ »ç¿ëÇÑ ¹æ½Ä [ÇÕÁýÇÕ(UNION)]
 SELECT EMPNO, ENAME, JOB, SAL, DEPTNO
   FROM EMP
   WHERE DEPTNO = 20 AND SAL > 2000
@@ -33,7 +33,7 @@ UNION
 SELECT EMPNO, ENAME, JOB, SAL, DEPTNO
   FROM EMP
   WHERE DEPTNO = 30 AND SAL > 2000;
--- Q3-3) ì§‘í•© ì—°ì‚°ìžë¥¼ ì‚¬ìš©í•œ ë°©ì‹ [êµì§‘í•©(INTERSECT)]
+-- Q3-3) ÁýÇÕ ¿¬»êÀÚ¸¦ »ç¿ëÇÑ ¹æ½Ä [±³ÁýÇÕ(INTERSECT)]
 SELECT EMPNO, ENAME, JOB, SAL, DEPTNO
   FROM EMP
   WHERE DEPTNO = 20 OR DEPTNO = 30
@@ -64,16 +64,16 @@ SELECT *
   AND MGR IS NOT NULL;
         
 -- p.133
-SELECT LENGTH('í•œê¸€'), LENGTHB('í•œê¸€')
+SELECT LENGTH('ÇÑ±Û'), LENGTHB('ÇÑ±Û')
   FROM DUAL;
   
--- p.134 ë¶€ë¶„ ë¬¸ìžì—´ ì¶œë ¥
-SELECT SUBSTR('KHì¸ìž¬êµìœ¡ì›', 3) FROM DUAL; -- ì¸ìž¬êµìœ¡ì›
-SELECT SUBSTR('KHì¸ìž¬êµìœ¡ì›', 3, 2) FROM DUAL; -- ì¸ìž¬
-SELECT SUBSTR('í™ê¸¸ë™', 1, 1) AS ì„± FROM DUAL; -- ì„±
-SELECT SUBSTR('í™ê¸¸ë™', 2) AS ì´ë¦„ FROM DUAL; -- ì´ë¦„
--- p.136 ìŒìˆ˜ë¡œ
-SELECT SUBSTR('í™ê¸¸ë™', -2, 2) AS ì´ë¦„ FROM DUAL; -- ì´ë¦„
+-- p.134 ºÎºÐ ¹®ÀÚ¿­ Ãâ·Â
+SELECT SUBSTR('KHÀÎÀç±³À°¿ø', 3) FROM DUAL; -- ÀÎÀç±³À°¿ø
+SELECT SUBSTR('KHÀÎÀç±³À°¿ø', 3, 2) FROM DUAL; -- ÀÎÀç
+SELECT SUBSTR('È«±æµ¿', 1, 1) AS ¼º FROM DUAL; -- ¼º
+SELECT SUBSTR('È«±æµ¿', 2) AS ÀÌ¸§ FROM DUAL; -- ÀÌ¸§
+-- p.136 À½¼ö·Î
+SELECT SUBSTR('È«±æµ¿', -2, 2) AS ÀÌ¸§ FROM DUAL; -- ÀÌ¸§
 SELECT JOB,
        SUBSTR(JOB, -LENGTH(JOB)) AS "-5",
        SUBSTR(JOB, -LENGTH(JOB), 2) AS "-5, 2",
@@ -104,46 +104,46 @@ SELECT SYSDATE AS NOW,
        SYSDATE-1 AS YESTERDAY,
        SYSDATE+1 AS TOMORROW
   FROM DUAL;
--- p.151 3ê°œì›” í›„ ë‚ ì§œ êµ¬í•˜ê¸°
+-- p.151 3°³¿ù ÈÄ ³¯Â¥ ±¸ÇÏ±â
 SELECT SYSDATE,
     ADD_MONTHS(SYSDATE, 3)
   FROM DUAL;
--- 10ì£¼ë…„ì´ ë˜ëŠ” ì‚¬ì›ë“¤ ë°ì´í„° êµ¬í•˜ê¸°
+-- 10ÁÖ³âÀÌ µÇ´Â »ç¿øµé µ¥ÀÌÅÍ ±¸ÇÏ±â
 SELECT EMPNO, ENAME, HIREDATE,
     ADD_MONTHS(HIREDATE, 120) AS WORK10YEAR
   FROM EMP;
   
 -- p.159
 SELECT SYSDATE,
-      TO_CHAR(SYSDATE, 'YYYY/MON/DD HH24:MI:SS DAY') AS í˜„ìž¬ë‚ ì§œì‹œê°„,
-      TO_CHAR(SYSDATE, 'YYYY/MON/DD HH24:MI:SS DAY', 'NLS_DATE_LANGUAGE = ENGLISH') AS í˜„ìž¬ë‚ ì§œì‹œê°„
+      TO_CHAR(SYSDATE, 'YYYY/MON/DD HH24:MI:SS DAY') AS ÇöÀç³¯Â¥½Ã°£,
+      TO_CHAR(SYSDATE, 'YYYY/MON/DD HH24:MI:SS DAY', 'NLS_DATE_LANGUAGE = ENGLISH') AS ÇöÀç³¯Â¥½Ã°£
 FROM DUAL;
 
 -- p.164
 SELECT TO_DATE('20180714', 'YYYY-MM-DD') AS TODATE FROM DUAL;
 
--- Q) ìž…ì‚¬ì¼ìžê°€ 6ì›”ì¸ ì‚¬ì› ì¶”ì¶œ
+-- Q) ÀÔ»çÀÏÀÚ°¡ 6¿ùÀÎ »ç¿ø ÃßÃâ
 SELECT *
   FROM EMP
   WHERE SUBSTR(TO_CHAR(HIREDATE), 4, 2) = '06';
 
 --  SELECT TO_CHAR(SYSDATE) FROM DUAL;
 
--- Q) í˜„ìž¬ì›”ì— ìž…ì‚¬í•œ ì‚¬ì›
+-- Q) ÇöÀç¿ù¿¡ ÀÔ»çÇÑ »ç¿ø
 SELECT *
   FROM EMP
   WHERE SUBSTR(TO_CHAR(HIREDATE), 4, 2) =
                TO_CHAR(SYSDATE, 'MM');
                
--- Q) ê·¼ì†ë…„ìˆ˜ êµ¬í•˜ê¸° Oë…„ Oê°œì›”
--- ë…„ ìˆ˜ëŠ” MONTHS_BETWEENì„ 12ë¡œ ë‚˜ëˆ ì„œ ë‚˜ë¨¸ì§€ëŠ” TRUNCë¡œ ë²„ë¦¬ê³ 
--- ê°œì›” ìˆ˜ëŠ” MONTHS_BETWEENì„ 12ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ê°’ì´ ê°œì›” ìˆ˜
+-- Q) ±Ù¼Ó³â¼ö ±¸ÇÏ±â O³â O°³¿ù
+-- ³â ¼ö´Â MONTHS_BETWEENÀ» 12·Î ³ª´²¼­ ³ª¸ÓÁö´Â TRUNC·Î ¹ö¸®°í
+-- °³¿ù ¼ö´Â MONTHS_BETWEENÀ» 12·Î ³ª´« ³ª¸ÓÁö°ªÀÌ °³¿ù ¼ö
 SELECT ENAME, HIREDATE,
-    TO_CHAR(TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12),'FM999') || 'ë…„' ||
-    TO_CHAR(MOD(MONTHS_BETWEEN(SYSDATE, HIREDATE), 12),'FM00') || 'ê°œì›”' AS ê·¼ì†ë…„ìˆ˜
-    , MONTHS_BETWEEN(SYSDATE, HIREDATE) AS "ì´ ê·¼ì† ê°œì›”"
-    , MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12 AS "ê·¼ì† ë…„ / 12"
-    , MOD(MONTHS_BETWEEN(SYSDATE, HIREDATE), 12) "ê·¼ì† ê°œì›” % 12"
+    TO_CHAR(TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12),'FM999') || '³â' ||
+    TO_CHAR(MOD(MONTHS_BETWEEN(SYSDATE, HIREDATE), 12),'FM00') || '°³¿ù' AS ±Ù¼Ó³â¼ö
+    , MONTHS_BETWEEN(SYSDATE, HIREDATE) AS "ÃÑ ±Ù¼Ó °³¿ù"
+    , MONTHS_BETWEEN(SYSDATE, HIREDATE) / 12 AS "±Ù¼Ó ³â / 12"
+    , MOD(MONTHS_BETWEEN(SYSDATE, HIREDATE), 12) "±Ù¼Ó °³¿ù % 12"
   FROM EMP;
   
   
@@ -163,9 +163,9 @@ SELECT EMPNO, ENAME, JOB,
           'MANAGER', SAL*1.1,
           'SALESMAN', SAL*1.05,
           'ANALYST', SAL,
-          SAL*1.03) - SAL AS ì¸ìƒì•¡
+          SAL*1.03) - SAL AS ÀÎ»ó¾×
   FROM EMP;
---  p.172 CASEë¬¸ 01
+--  p.172 CASE¹® 01
 SELECT EMPNO, ENAME, JOB, SAL,
     CASE JOB
           WHEN 'MANAGER' THEN SAL*1.1
@@ -178,9 +178,9 @@ SELECT EMPNO, ENAME, JOB, SAL,
           WHEN 'SALESMAN' THEN SAL*1.05
           WHEN 'ANALYST' THEN SAL
           ELSE SAL*1.03
-    END - SAL ì¸ìƒì•¡
+    END - SAL ÀÎ»ó¾×
   FROM EMP;
-  --  p.173 CASEë¬¸ 02
+  --  p.173 CASE¹® 02
   SELECT EMPNO, ENAME, JOB, SAL,
     CASE
           WHEN JOB IN ('MANAGER', 'PRESIDENT') THEN SAL*1.1
@@ -193,10 +193,10 @@ SELECT EMPNO, ENAME, JOB, SAL,
           WHEN JOB = 'SALESMAN' THEN SAL*1.05
           WHEN JOB = 'ANALYST' THEN SAL
           ELSE SAL*1.03
-    END - SAL AS "ì¸ìƒì•¡"
+    END - SAL AS "ÀÎ»ó¾×"
   FROM EMP;
   
--- p.174 ë¬¸ì œ------------------------------------------------
+-- p.174 ¹®Á¦------------------------------------------------
 -- Q1)
 SELECT EMPNO,
     RPAD(SUBSTR(EMPNO, 1, 2), LENGTH(EMPNO), '*') AS MASKING_EMPNO,
@@ -214,7 +214,7 @@ SELECT EMPNO, ENAME, SAL,
 DESC EMP;
 -- Q3)
 SELECT EMPNO, ENAME, HIREDATE,
-    TO_CHAR(NEXT_DAY(ADD_MONTHS(HIREDATE, 3), 'ì›”'), 'RRRR-MM-DD') AS R_JOB,
+    TO_CHAR(NEXT_DAY(ADD_MONTHS(HIREDATE, 3), '¿ù'), 'RRRR-MM-DD') AS R_JOB,
     NVL(TO_CHAR(COMM), 'N/A') AS COMM
 FROM EMP;
 
@@ -234,12 +234,12 @@ SELECT EMPNO, ENAME, MGR,
   
   
 -- p.186 ------------------------------
-SELECT DEPTNO, SUM(SAL) "ê¸‰ì—¬í•©", ROUND(AVG(SAL), 1) "ê¸‰ì—¬í‰ê· ",
-        MAX(SAL) "ìµœëŒ€ê¸‰ì—¬", MIN(SAL)"ìµœì†Œê¸‰ì—¬", COUNT(*) "ì¸ì›ìˆ˜"
+SELECT DEPTNO, SUM(SAL) "±Þ¿©ÇÕ", ROUND(AVG(SAL), 1) "±Þ¿©Æò±Õ",
+        MAX(SAL) "ÃÖ´ë±Þ¿©", MIN(SAL)"ÃÖ¼Ò±Þ¿©", COUNT(*) "ÀÎ¿ø¼ö"
 FROM EMP
 GROUP BY DEPTNO
 ORDER BY SUM(SAL) DESC;
 
-SELECT SUM(SAL) "ê¸‰ì—¬í•©", ROUND(AVG(SAL), 1) "ê¸‰ì—¬í‰ê· ",
-        MAX(SAL) "ìµœëŒ€ê¸‰ì—¬", MIN(SAL)"ìµœì†Œê¸‰ì—¬", COUNT(*) "ì¸ì›ìˆ˜"
+SELECT SUM(SAL) "±Þ¿©ÇÕ", ROUND(AVG(SAL), 1) "±Þ¿©Æò±Õ",
+        MAX(SAL) "ÃÖ´ë±Þ¿©", MIN(SAL)"ÃÖ¼Ò±Þ¿©", COUNT(*) "ÀÎ¿ø¼ö"
 FROM EMP;
