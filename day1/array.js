@@ -2,6 +2,8 @@
 
 //  1) 빈 배열 생성
 const arr = [];
+const arr2 = new Array();
+console.log(arr, arr2);
 
 // 2) 요소 추가
 arr.push(1);

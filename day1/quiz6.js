@@ -4,8 +4,6 @@
 // 실행됨을 보이시오.
 
 
-
-// case 1) 함수 선언문
 // {
 //   function f(arr, n) {
 //     return function () {
@@ -14,7 +12,8 @@
 //       }
 //     }
 //   }
-//   console.log(f([1, 2, 3], 3));
+//   let arr = [1, 2, 3];
+//   console.log(f(arr, 3));
 // }
 
 {

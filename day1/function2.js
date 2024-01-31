@@ -16,7 +16,7 @@ console.log('--------------------');
 {
   const z = function(x, y) {
     return x + y;
-  }
+  };
   
   // console.log(z(10, 20));
   // console.log(add(10, 20));
@@ -32,7 +32,7 @@ console.log('--------------------');
 {
   const z = function(x, y) {
     return x + y;
-  }
+  };
 
   console.log(add(z, 30));
   
