@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <div>
+      <input id="op1" type="text"> + <input type="text" id="op2"> = <input type="text" id="result">
+    </div>
+    <div>
+      <button type="button" id="btn">계산</button>
+    </div>
+  </form>
+
+  <script>
+
+    // const $op1 = window.document.getElementById('op1');
+    // const $op2 = window.document.getElementById('op2');
+    // const $result = window.document.getElementById('result');
+
+    // // const $btn = window.document.getElementById('btn'); // $는 html을 참조하는 변수를 표기할 때 주로 사용
+    // $btn.addEventListener('click', e => {
+    //   $result.value = window.parseInt($op1.value) + window.parseInt($op2.value);
+    // });
+    // window는 생략가능
+    // 변수명 앞에 $는 원래는 되는것,
+    // 하지만 html을 참조하는 변수를 표기할 때 주로 사용
+    const $op1 = window.document.getElementById('op1');
+    const $op2 = document.getElementById('op2');
+    const $result = document.getElementById('result');
+    const $btn = document.getElementById('btn');
+    $btn.addEventListener('click', evt => {
+      $result.value = window.parseInt($op1.value) + parseInt($op2.value);
+    });
+  </script>
+
+</body>
+
+</html>
