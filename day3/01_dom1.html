@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM에 대한 이해</title>
+</head>
+<body>
+  
+  <div class="wrap">
+    <!-- <button>버튼</button> -->
+  </div>
+  <input type="text">
+  <p>빨간색으로 변해라~ 얍!</p>
+  <div class="btns"></div>
+
+  <script>
+    const $div = window.document.querySelector('.wrap');
+    // 타겟 엘리먼트에 컨텐츠 삽입(엘리먼트+텍스트)
+    // $div.innerHTML = '<button>버튼</button> 버튼을 클릭하세요';
+    // 타겟 엘리먼트에 컨텐츠 삽입(문자열만)
+    // $div.textContent = '<button>버튼</button> 버튼을 클릭하세요';
+
+    // 속성 변경
+    const $input = document.querySelector('[type=text]');
+    // $input.type = 'checkbox';
+    $input.setAttribute('type', 'radio');
+
+    // 스타일 변경
+    const $p = document.querySelector('p');
+    $p.style.color = 'red';
+
+    // 엘리먼트 생성
+    const $btn1 = document.createElement('button');
+    $btn1.textContent = '버튼1';
+    const $btn2 = document.createElement('button');
+    $btn2.textContent = '버튼2';
+
+    // 부모 엘리먼트에 자식 엘리  먼트 추가
+    const $btns = document.querySelector('.btns');
+    $btns.appendChild($btn1);
+    $btns.appendChild($btn2);
+
+    // 부모 엘리먼트에서 자식엘리먼트 제거
+    $btns.removeChild($btn2);
+
+    // 부모 엘리먼트에서 자식 엘리먼트($btn1)를 다른 엘리먼트로 교체
+    $btns.replaceChild($btn2, $btn1);
+
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

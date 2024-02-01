@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>안보였던걸 보이게하기</title>
+  <style>
+    .msg {
+      color: red;
+      margin: 0;
+      font-size : 0.8rem;
+      font-weight : bold;
+    }
+    .on {
+      display: block;
+    }
+    .off {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="" >
+    <div><label for="">아이디</label><input id="id" type="text"></div>
+    <p class="msg off">아이디를 입력하세요</p>
+    <div><label for="">비밀번호</label><input id="pw" type="password"></div>
+    <div><input id="btnLogin" type="button" value="로그인"></input>
+    <!-- <div><button>로그인2</button></div> -->
+  </form>
+
+  <script>
+    const $btnLogin = document.getElementById('btnLogin');
+    $btnLogin.addEventListener('click', () => {
+      const $id = document.getElementById('id');
+      const $msg = document.querySelector('.msg');
+      // $msg.textContent = '아이디를 입력하세요';
+      $msg.style.display = 'block';
+      if ($id.value.trim().length == 0) {
+        $msg.classList.add('on');
+      }
+    });
+  </script>
+
+</body>
+</html>
