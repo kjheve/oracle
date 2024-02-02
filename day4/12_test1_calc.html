@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="result" readonly> <!--혹은 disable-->
+  <button>1</button> <button>2</button> <button>+</button>
+  <p>결과</p>
+  <!-- 1 + 2 -->
+
+  <script>
+    // window.eval('1+1'); 문자열로 구성된거 계산된 값을 실행
+    // console.log(window.eval('1+1'));
+    // console.log(typeof(window.eval));
+
+    const $btns = document.querySelectorAll('button');
+    // console.log($btns);
+    const $result = document.getElementById('result');
+
+    $btns.forEach(ele => {
+      // console.log(ele);
+      ele.addEventListener('click', evt => {
+        // console.log(evt.target.textContent);
+        $result.value += evt.target.textContent;
+      });
+    });
+    document.querySelector('p').addEventListener('click', (evt) => {
+      if ($result.value) {
+        $result.value = window.eval($result.value);
+      }
+
+      // -------------------------------------------------------------
+      // chatGPT 예외처리 try-catch 말고 if로 예외처리하기
+      // if (typeof window.eval === 'function') {
+      //   const result = window.eval(codeToEvaluate);
+      //   if (result instanceof Error) {
+      //     console.error('에러가 발생했습니다:', result.message);
+      //   }
+      // }
+      // -----------------------------------------------------------------
+      // if ($result.value) {
+      //   try {
+      //     $result.value = window.eval($result.value);
+      //   } catch (error) {
+      //     console.error('에러가 발생했습니다:', error.message);
+      //     // 에러 처리: 예를 들어, 사용자에게 알림을 보여주거나 다른 처리를 수행할 수 있습니다.
+      //     // alert('계산 중 에러가 발생했습니다. 유효한 수식을 입력하세요.');
+      //     // 또는 에러가 발생했을 때 초기화 등의 작업을 수행할 수 있습니다.
+      //     $result.value = 'Error';
+      //   }
+      // }
+
+      
+    });
+
+  </script>
+</body>
+
+</html>

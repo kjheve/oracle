@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p class="c1"></p>
+
+  <script>
+    console.log(document.querySelector('.c1').classList); // DOMTokenList
+    console.log(typeof(document.querySelector('.c1').classList)); // object
+    console.log(Object.prototype.toString.call(document.querySelector('.c1').classList)); // 상세타입 [object DOMTokenList]
+    
+  </script>
+</body>
+</html>

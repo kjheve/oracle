@@ -1,0 +1,39 @@
+<!-- 
+  문제 2)
+  HTML 문서에는 여러 개의 리스트 아이템이 있습니다.
+  각 리스트 아이템을 클릭하면 해당 아이템의 배경색이 노란색으로 변경되도록 자바스크립트를 작성해 보세요.
+  단, 클릭한 아이템만 노란색으로 변경되어야 하고, 다른 아이템은 기본 배경색을 유지해야 합니다.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 2</title>
+</head>
+
+<body>
+  <ul id="list-wrap">
+    <li class="li">리스트1</li>
+    <li class="li">리스트2</li>
+    <li class="li">리스트3</li>
+  </ul>
+  <script>
+    const $wrap = document.getElementById('list-wrap');
+    $wrap.addEventListener('click', evt => { // 클릭했을 때
+      // console.log(evt);
+      // for (let ele of $wrap.children) { // (클릭하면) for문 계속 돌아서 색상을 초기화함
+      //   ele.style.backgroundColor = 'initial';
+      // }
+      Array.from($wrap.children).forEach(ele => {
+        ele.style.backgroundColor = 'initial'
+      });
+      if(evt.target.nodeName != 'LI' ) { return; } // nodeName : LI가 아닌거는 색칠X
+      evt.target.style.backgroundColor = 'yellow' // 클릭한거는 yellow로 색칠
+    })
+  </script>
+</body>
+
+</html>

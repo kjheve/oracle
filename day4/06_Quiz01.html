@@ -1,0 +1,67 @@
+<!-- 
+  문제 1)
+  HTML 문서에는 여러 개의 버튼이 있습니다.
+  각 버튼을 클릭하면 해당 버튼의 텍스트 색상이 빨간색으로 변경되도록
+  자바스크립트를 작성해보세요.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz1</title>
+  <style>
+    div {
+      background-color: lightblue;
+      width: 300px;
+      height: 50px;
+      display: flex;
+      justify-content: space-around;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="buttons-wrap">
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">버튼3</button>
+    <button id="btn4">버튼4</button>
+    <button id="btn5">버튼5</button>
+  </div>
+
+  <div><button id='clearBtn'>초기화</button></div>
+
+  <script>
+    const $wrap = document.getElementById('buttons-wrap');
+
+    $wrap.addEventListener('click', evt => {
+      if (evt.target.nodeName == 'BUTTON') {
+        if (evt.target.style.color == 'red') {
+          evt.target.style.color = 'initial'
+        } else {
+          evt.target.style.color = 'red'
+        }
+      }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', evt => {
+      // console.log($wrap.children);
+
+      // case 1)
+      // for(let ele of $wrap.children) {
+      //   ele.style.color = 'initial';
+      // }
+      // case 2)
+      // $wrap.children.forEach(ele=>ele.style='red');
+      // Array.from($wrap.children).forEach(ele => ele.style = 'red');
+      Array.from($wrap.children).forEach(ele => ele.style.color = 'initial');
+
+
+    });
+
+  </script>
+</body>
+
+</html>

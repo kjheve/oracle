@@ -1,0 +1,65 @@
+<!-- 
+  문제 3)
+  HTML 문서에는 여러 개의 이미지가 있습니다.
+  팀원들은 각자 이미지를 클릭하면 해당 이미지가 회전하도록 자바스크립트를 작성해야 합니다.
+  첫 번째 팀원은 90도,
+  두 번째 팀원은 180도,
+  세 번째 팀원은 270도로 이미지를 회전시켜야 합니다.
+  단, 선택한 이미지만 회전시켜야 합니다.
+  모두 완성을 먼저 한 팀이 우승합니다.
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .img-wrap .item.on {
+      transform: rotate(90deg);
+      /* transform: rotate(180deg); */
+      /* transform: rotate(270deg); */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="img-wrap">
+    <img class="item" src="https://picsum.photos/150/150" alt="image">
+    <img class="item" src="https://picsum.photos/150/150" alt="image">
+    <img class="item" src="https://picsum.photos/150/150" alt="image">
+  </div>
+
+  <script>
+    const $wrap = document.querySelector('.img-wrap');
+    const $item = document.querySelectorAll('.item');
+
+    $wrap.addEventListener('click', evt => {
+      console.log(evt); // target에 classList를 들어가보면
+      console.log(evt.target.classList); // DOMTokenList 인것을 확인
+      // case 1)
+      // $item.forEach((ele) => {
+      //   if (evt.target == ele) {
+      //     ele.classList.add('on');
+      //   } else {
+      //     ele.classList.remove('on');
+      //   }
+      // });
+
+      // case 2)
+      for (let ele of $wrap.children) { //
+        ele.style.transform = 'initial';
+      }
+      if(evt.target.nodeName != 'IMG' ) { return; }
+      evt.target.style.transform = 'rotate(90deg)'
+
+    });
+
+  </script>
+
+</body>
+
+</html>

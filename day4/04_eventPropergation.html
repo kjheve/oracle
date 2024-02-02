@@ -1,0 +1,90 @@
+<!-- 양식에 버튼 2개를 포함하여 각각의 버튼 클릭시
+  '버튼1 클릭', '버튼2 클릭' 메세지를 콘솔에 출력하기 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>첫줄 주석에 문제</title>
+  <style>
+    #form1, #form2 {
+      background-color: lightgoldenrodyellow;
+      width: 200px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      border: 1px solid black;
+    }
+
+    .btn {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div onsubmit="return false">
+    <form action="" id="form1">
+      <button class="btn btn1">버튼1</button>
+      <button class="btn btn2">버튼2</button>
+    </form>
+  </div>
+
+  <div onsubmit="return false">
+    <form action="" id="form2">
+      <button class="btn btn3">버튼3</button>
+      <button class="btn btn4">버튼4</button>
+    </form>
+  </div>
+
+
+  <script>
+    const $btn1 = document.querySelector('.btn1');
+    const $btn2 = document.querySelector('.btn2');
+
+
+    $btn1.addEventListener('click', evt => {
+      // console.log(evt.target.textContent + '클릭');
+      console.log(`${evt.target.textContent} 클릭(form1)`);
+    }, false);
+    $btn2.addEventListener('click', evt => {
+      console.log(`${evt.target.textContent} 클릭(form1)`);
+    }, false);
+
+    // --------------------------------------------------------------
+
+    const $form2 = document.getElementById('form2');
+    const $btn3 = document.querySelector('.btn3');
+    const $btn4 = document.querySelector('.btn4');
+
+    $form2.addEventListener('click', evt => {
+      // console.log(evt);
+      // console.log(evt.target); // 이벤트가 발생한 요소
+      // console.log(evt.currentTarget); // 이벤트 리스너를 등록한 요소
+
+      // case 1)
+      // if (evt.target == $btn3) {
+      //   console.log(`${evt.target.textContent} 클릭(form2)`);
+      // } else if (evt.target == $btn4) {
+      //   console.log(`${evt.target.textContent} 클릭(form2)`);
+      // } else {return;}
+  
+      // case 2)
+      if(evt.target.nodeName != 'BUTTON' ) { return; }
+      console.log(`${evt.target.textContent} 클릭(form2)`);
+
+      // case 3)
+      // if(evt.target.className != 'btn btn3' && evt.target.className != 'btn btn4') {
+      //   return;
+      // }
+      // console.log(`${evt.target.textContent} 클릭(form2)`);
+    }, false);
+
+
+
+  </script>
+</body>
+
+</html>

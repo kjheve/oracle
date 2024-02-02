@@ -1,0 +1,76 @@
+<!-- 
+  문제 2)
+  HTML 문서에는 여러 개의 리스트 아이템이 있습니다.
+  각 리스트 아이템을 클릭하면 해당 아이템의 배경색이 노란색으로 변경되도록 자바스크립트를 작성해 보세요.
+  단, 클릭한 아이템만 노란색으로 변경되어야 하고, 다른 아이템은 기본 배경색을 유지해야 합니다.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap .item.on {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <!-- ul.wrap>li.item{item$}*3 -->
+  <ul class="wrap">
+    <li class="item">아이템1</li>
+    <li class="item">아이템2</li>
+    <li class="item">아이템3</li>
+  </ul>
+
+  <script>
+    const $wrap = document.querySelector('.wrap');
+    // case 2-2) 보고온 후 작성 case 3) 시작
+    const $lis = document.querySelectorAll('.wrap .item')
+    console.log($lis); // ※NodeList(3); 인 것을 확인
+
+    $wrap.addEventListener('click', evt => {
+      // case 1) 클래스값을 문자열로 읽어오기 "item on" (노가다...)
+      // console.log(evt.target.className);
+      // evt.target.className = evt.target.className.replace('on', '').trim();
+      // --------------------------------------------------------------
+      // case 2) 클래스 값을 배열로 가져옴
+      // evt.target.classList; // 클래스값을 배열로 반환 [item, on]
+      // evt.target.classList.add('test'); // 클래스값을 배열로 반환 [item, on, test]
+      // evt.target.classList.remove('test'); // [item, on]
+      // evt.target.classList.replace('on', 'off');
+      // console.log(evt.target.classList.toggle('on')); // ★이게 좋네... 없으면 on 추가, 있으면 on 제거
+      // console.log(evt.target.classList.contains('on')); // 찾고자하는 클래스 값이 있는지 없는지
+      // case 2-1) 토글이 짱
+      // evt.target.classList.toggle('on') // 없으면 on 추가, 있으면 on 제거
+      // case 2-2) 이건 전부다 켜짐 버그발생
+      // if(evt.target.classList.contains('on')) {
+      //   evt.target.classList.remove('on');
+      // } else {
+      //   evt.target.classList.add('on');
+      // }
+      // -------------------------------------------------------------------
+      // case 3) 이벤트 소스만 클래스값 'on'추가 그외 요소는 클래스값 'on' 제거
+      // $lis.forEach((ele, idx, arr) => {
+      //   console.log(ele, idx, arr)
+      // });
+      $lis.forEach((ele) => {
+        if(evt.target == ele) {
+          ele.classList.add('on');
+        } else {
+          ele.classList.remove('on');
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+

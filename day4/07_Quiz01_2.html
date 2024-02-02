@@ -1,0 +1,91 @@
+<!-- 
+  문제 1_2) 자바스크립트만 사용하여 작성
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz1_2</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+
+  <script>
+    // ------------------------버튼추가 버튼 생성------------------------
+    const $button = document.createElement('button'); // ★button 태그 생성
+    $button.textContent = '버튼추가';
+
+    // $button.addEventListener('click', evt => { // 버튼을 클릭했을 때 log확인
+    //   console.log(evt.target.textContent);
+    // });
+
+    //-------------------------초기화 버튼 생성-------------------------
+    const $btnClear = document.createElement('button'); // ★button 태그 생성
+    $btnClear.textContent = '클릭초기화';
+
+    // 초기화버튼을 눌렸을 때
+    $btnClear.addEventListener('click', evt => { // 색상 초기화
+      Array.from($btnsWrap.children).forEach(ele => ele.style.color = 'initial');
+    });
+
+    //-------------------------삭제 버튼 생성-------------------------
+    const $btnDel = document.createElement('button'); // ★button 태그 생성
+    $btnDel.textContent = '버튼삭제';
+
+    // 초기화버튼을 눌렸을 때
+    $btnDel.addEventListener('click', evt => { // 색상 초기화
+      while ($btnsWrap.firstChild) {
+        $btnsWrap.removeChild($btnsWrap.firstChild);
+      }
+    });
+
+    //---------------------body태그 밑에 생성한 버튼 넣기-----------------
+    const $body = document.querySelector('body'); // body 선택
+    $body.appendChild($button); // 생성한 add button을 body 자식으로 추가
+    $body.appendChild($btnClear); // 생성한 clear button을 body 자식으로 추가
+    $body.appendChild($btnDel); // 생성한 delete button을 body 자식으로 추가
+
+    // -------------버튼들을 감쌀 div.btnsWrap 생성----------------------
+
+    const $btnsWrap = document.createElement('div'); // div 태그 생성
+    // $btnsWrap.className = 'btns-wrap';
+    $btnsWrap.setAttribute("class", "btns-wrap"); // div class이름 설정
+    $body.appendChild($btnsWrap); // 생성한 div를 body 자식으로 추가
+
+    // --------------div.btnsWrap 영역 클릭 했을 때-----------------------
+    $btnsWrap.addEventListener('click', evt => {
+      if (evt.target.nodeName == 'BUTTON') { // nodeName이 버튼일 때
+        if (evt.target.style.color == 'red') { // 빨간색이면
+          evt.target.style.color = 'initial' // 초기화
+        } else {
+          evt.target.style.color = 'red' // 빨간색이 아니면 빨간색
+        }
+      }
+    });
+
+    // --------------버튼추가를 눌렸을 때 생성 함수&이벤트--------------
+    function createButton() { // 버튼 생성 함수 (아래 ★버튼 추가에서 사용)
+      const $button = document.createElement('button');
+      $button.className = 'btn'
+      $button.textContent = '버튼';
+      return $button;
+    }
+
+    // ★버튼 추가 이벤트
+    $button.addEventListener('click', (evt) => {
+      // const $button = createButton();
+      // $btnsWrap.appendChild($button);
+      $btnsWrap.appendChild(createButton());
+    });
+    // -----------------------------------------------------------
+
+  </script>
+</body>
+
+</html>
