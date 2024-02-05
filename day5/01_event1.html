@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인라인 방식의 이벤트</title>
+</head>
+
+<body>
+  <!-- 1. 인라인 방식의 이벤트 -->
+  <!-- <button id="btn1" onclick="
+    let x = 10; let y = 20; let z = x + y;
+    console.log(event);
+    console.log(`클릭했소 ${z}`)">클릭1-1</button> -->
+  <button id="btn1" onclick="h_click(event)">클릭1-2</button>
+
+  <!-- 2. 프로퍼티 리스너 방식 이벤트 -->
+  <button id="btn2">클릭2</button>
+
+  <!-- 3. addEventListener 방식 이벤트 -->
+  <button id="btn3">클릭3</button>
+
+  <script>
+
+    // 방식1)
+    function h_click(evt) {
+      let x = 10;
+      let y = 20;
+      let z = x + y;
+      console.log(evt);
+      console.log(`클릭1-2 - ${z}`);
+    }
+
+    // 방식 2)
+    const $btn2 = document.getElementById('btn2');
+    $btn2.onclick = function (evt) {
+      let x = 10;
+      let y = 20;
+      let z = x + y;
+      console.log(evt);
+      console.log(`클릭2 - ${z}`);
+      // 이벤트 제거
+      $btn2.onclick = null;
+    }
+
+    // 방식 3)
+    const $btn3 = document.getElementById('btn3');
+    // $btn3.addEventListener('click', function (evt) {
+    //   let x = 10;
+    //   let y = 20;
+    //   let z = x + y;
+    //   console.log(evt);
+    //   console.log(`클릭3 - ${z}`);
+    // });
+
+    // 이벤트 제거
+    function f(evt) {
+      let x = 10;
+      let y = 20;
+      let z = x + y;
+      console.log(evt);
+      console.log(`클릭3 - ${z}`);
+      $btn3.removeEventListener('click', f);
+    }
+    $btn3.addEventListener('click', f);
+
+  </script>
+
+</body>
+
+</html>
