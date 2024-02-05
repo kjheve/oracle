@@ -25,13 +25,12 @@ $btns.forEach(ele => ele.addEventListener('click', evt => {
         }
       });
     }
-  }
-));
+  }));
 
 // 5. ★AC(all clear)버튼을 클릭하면 계산결과 필드 초기화
 $allClear.addEventListener('click', evt => {
   // 계산필드 초기화
-  $formula.value = "";
+  $formula.value = '';
   // 에러시 color 속성이 바뀌었던걸 .wrap의 color 속성으로 되돌림
   $formula.style.color = 'inherit';
   // 에러시 버튼 비활성화 했던거 다시 활성화
