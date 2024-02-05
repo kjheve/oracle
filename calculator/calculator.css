@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  /* outline: solid; */
+}
+
+.wrap {
+  /* --- grid로 레이아웃 구성 --- */
+  display: grid;
+  grid-template-columns : repeat(4, 1fr);
+  grid-template-rows : repeat(5, 1fr);
+  gap : 10px 10px;
+  /* -------------------------------- */
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+  border : 5px ridge;
+  padding : 70px 30px 20px 30px;
+  box-shadow: 8px 8px 10px gray;
+  background-color: rgb(199, 199, 199);
+}
+
+/* 계산 결과 필드 */
+.wrap #formula {
+  grid-column: 1 / 5; /* grid 최상단 행 차지*/
+  font-size: 1.6rem;
+  font-weight : bold;
+  text-align: right; /* 계산기 공식 오른쪽 배치 */
+  padding: 0 3vw;
+  
+}
+
+/* btn들 폰트 크기 */
+.wrap .btn {
+  font-size: 1.4rem;
+}
+
+/* btn들 클릭한거 색깔 칠하기 */
+.wrap .btn.on {
+  background-color: yellow;
+  box-shadow: 3px 3px 5px gray inset;
+}
+
+/* Erorr시 버튼 비활성화 */
+.wrap .btn.err {
+  pointer-events: none;
+  opacity: 0.5;
+}
