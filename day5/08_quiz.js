@@ -13,3 +13,9 @@ const result = persons.filter(ele => ele.gender === '남')
 .map(ele => ele.name);
 
 console.log(result);
+
+
+// Sol
+persons.filter(ele => ele.gender === '남')
+.sort((a, b) => a.age - b.age)
+.forEach(ele => console.log(ele.name));
