@@ -1,0 +1,85 @@
+<!-- 아래 배열을 html, css를 활용하여 목록 작성하시오. (table 태그) -->
+<!-- const students = [
+  { name: '김철수', gender: '남', height: 170, weight: 65, hobby: '축구' },
+  { name: '이영희', gender: '여', height: 160, weight: 50, hobby: '독서' },
+  { name: '박지민', gender: '여', height: 165, weight: 55, hobby: '영화감상' },
+  { name: '최영수', gender: '남', height: 180, weight: 75, hobby: '등산' },
+  { name: '김민지', gender: '여', height: 158, weight: 48, hobby: '요리' }
+]; -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="wrap">
+    <table>
+      <tr>
+        <td>이름</td>
+        <td>성별</td>
+        <td>키</td>
+        <td>몸무게</td>
+        <td>취미</td>
+      </tr>
+    </table>
+    <div>
+      <label for="">키 평균</label>
+      <input type="text" id="height" readonly>
+    </div>
+    <div>
+      <label for="">몸무게 평균</label>
+      <input type="text" id="weight" readonly>
+    </div>
+
+    
+  </div>
+
+  <script>
+    const students = [
+      { name: '김철수', gender: '남', height: 170, weight: 65, hobby: '축구' },
+      { name: '이영희', gender: '여', height: 160, weight: 50, hobby: '독서' },
+      { name: '박지민', gender: '여', height: 165, weight: 55, hobby: '영화감상' },
+      { name: '최영수', gender: '남', height: 180, weight: 75, hobby: '등산' },
+      { name: '김민지', gender: '여', height: 158, weight: 48, hobby: '요리' }
+    ];
+
+    // ---------- 테이블에 데이터 넣기 --------------
+    const $table = document.querySelector('#wrap table');
+
+    students.forEach(ele => {
+      const $tr = document.createElement('tr');
+      // console.log(Object.values(ele)); // 03_objectLitteral.js 참고
+      Object.values(ele).forEach(ele => {
+        const $td = document.createElement('td');
+        $td.textContent = ele;
+        $tr.appendChild($td);
+      });
+      // $tr.textContent = ele.name;
+      $table.appendChild($tr); // tr 배치 $table의 자식으로 배치
+    });
+    // ---------------------------------------------
+
+    // ----------- 키, 몸무게 평균 구하기 --------------
+    const avgOfHeight =
+    students.map(student => student.height) // 키(cm)만 반환
+    .reduce((acc, curr, idx, arr) => ((idx == arr.length-1) ? (acc + curr) : (acc + curr) / arr.length)); // 키의 합
+    const avgOfWeight = 
+    students.map(student => student.weight) // 몸무게(kg)만 반환
+    .reduce((acc, curr, idx, arr) => ((idx == arr.length-1) ? (acc + curr) : (acc + curr) / arr.length)); // 키의 합
+
+    document.getElementById('height').value = avgOfHeight;
+    document.getElementById('weight').value = avgOfWeight;
+    // ---------------------------------------------
+
+    
+
+  </script>
+
+</body>
+
+</html>
